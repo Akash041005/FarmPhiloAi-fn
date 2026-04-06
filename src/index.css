@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #22c55e;
+  --primary-dark: #16a34a;
+  --primary-light: #4ade80;
+  --accent-neon: #39ff14;
+  --accent-glow: #00ff88;
+  --background: #ffffff;
+  --surface: #f9fafb;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+}
+
+.dark {
+  --primary: #22c55e;
+  --primary-dark: #16a34a;
+  --primary-light: #4ade80;
+  --accent-neon: #39ff14;
+  --accent-glow: #00ff88;
+  --background: #0a0a0a;
+  --surface: #1a1a1a;
+  --text: #f9fafb;
+  --text-secondary: #9ca3af;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-2xl shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-white/30 dark:border-white/10 rounded-2xl shadow-lg;
+  }
+  
+  .glass-button {
+    @apply bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-white/40 dark:border-white/20 rounded-xl shadow-md hover:shadow-lg transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-800 dark:text-gray-100 font-medium px-6 py-3 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-lg hover:border-primary-300 transition-all duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all duration-200;
+  }
+  
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-xl transition-all duration-300;
+  }
+  
+  .animate-stagger > * {
+    @apply animate-[fadeInUp_0.5s_ease-out_forwards];
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-light {
+    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-accent-neon bg-clip-text text-transparent;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+              linear-gradient(135deg, var(--primary), var(--accent-glow)) border-box;
+  border: 2px solid transparent;
+}
+
+.scan-overlay {
+  background: linear-gradient(180deg, transparent 0%, rgba(34, 197, 94, 0.1) 50%, transparent 100%);
+  animation: scan 2s ease-in-out infinite;
+}
+
+.pulse-ring {
+  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
